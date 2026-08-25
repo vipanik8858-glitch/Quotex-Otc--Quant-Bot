@@ -1,1 +1,50 @@
+name: Quotex OTC Quant Signal Generator
 
+on:
+  schedule:
+    # Day Session Trigger: 11:45 AM BST (05:45 AM UTC) -> Generates Day Session Signals
+    - cron: '45 5 * * *'
+    # Day Session Result Tracking: 04:05 PM BST (10:05 AM UTC)
+    - cron: '5 10 * * *'
+    # Night Session Trigger: 09:45 PM BST (03:45 PM UTC) -> Generates Night Session Signals
+    - cron: '45 15 * * *'
+    # Night Session Result Tracking: 02:05 AM BST (08:05 PM UTC)
+    - cron: '5 20 * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Execution Mode (generate / verify)'
+        required: false
+        default: 'auto'
+
+jobs:
+  run-quant-engine:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Execute Institutional Engine
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python main.py
+
+      - name: Commit & Push Learning History State
+        run: |
+          git config --global user.name "QuantBot-Engine"
+          git config --global user.email "bot@quantengine.local"
+          git add signal_history.json || true
+          git commit -m "Automated Self-Learning System Update [Skip CI]" || true
+          git push || true
