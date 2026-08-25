@@ -15,8 +15,8 @@ TIMEZONE = pytz.timezone('Asia/Dhaka') # UTC+6 (Bangladesh Standard Time)
 MIN_PAYOUT_THRESHOLD = 82.0 # Dynamic Payout Filter (>= 82%)
 MAX_SIGNALS_PER_SESSION = 15 # Target top 10-15 signals
 MIN_SIGNALS_PER_SESSION = 10
-BODY_TO_WICK_THRESHOLD = 0.65 # Minimum 65% Candle Body size (Anti-Doji)
-PROBABILITY_SCORE_CUTOFF = 84.0 # Strict score for Direct Win Priority
+BODY_TO_WICK_THRESHOLD = 0.55 # Minimum 65% Candle Body size (Anti-Doji)
+PROBABILITY_SCORE_CUTOFF = 82.0 # Strict score for Direct Win Priority
 
 # Active High-Yield Quotex OTC Asset Universe
 OTC_PAIR_UNIVERSE = [
