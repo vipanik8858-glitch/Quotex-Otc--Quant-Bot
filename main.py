@@ -16,7 +16,7 @@ MIN_PAYOUT_THRESHOLD = 82.0 # Dynamic Payout Filter (>= 82%)
 MAX_SIGNALS_PER_SESSION = 15 # Target top 10-15 signals
 MIN_SIGNALS_PER_SESSION = 10
 BODY_TO_WICK_THRESHOLD = 0.50 # Minimum 65% Candle Body size (Anti-Doji)
-PROBABILITY_SCORE_CUTOFF = 79.0 # Strict score for Direct Win Priority
+PROBABILITY_SCORE_CUTOFF = 70.0 # Strict score for Direct Win Priority
 
 # Active High-Yield Quotex OTC Asset Universe
 OTC_PAIR_UNIVERSE = [
