@@ -39,7 +39,18 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          python main.py
+          # ম্যানুয়ালি রান দিলে ইনপুট মোড নেবে, আর শিডিউলে রান হলে ক্রন টাইম অনুযায়ী মোড সিলেক্ট করবে
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            if [ "${{ github.event.inputs.mode }}" == "auto" ]; then
+              python main.py
+            else
+              python main.py --mode ${{ github.event.inputs.mode }}
+            fi
+          elif [ "${{ github.event.schedule }}" == "5 10 * * *" ] || [ "${{ github.event.schedule }}" == "5 20 * * *" ]; then
+            python main.py --mode verify
+          else
+            python main.py --mode generate
+          fi
 
       - name: Commit & Push Learning History State
         run: |
