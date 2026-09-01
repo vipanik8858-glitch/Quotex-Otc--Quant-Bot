@@ -3,7 +3,6 @@
     "past_signals": {},
     "current_session": {
         "name": "NIGHT SESSION (10:00 PM - 02:00 AM)",
-        "signals": [
-            {
-                "time_str": "22:52",
-                "timestamp": 
+        "signals": []
+    }
+}
