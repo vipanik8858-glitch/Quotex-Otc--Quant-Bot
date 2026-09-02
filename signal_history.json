@@ -2,7 +2,8 @@
     "pair_penalties": {},
     "past_signals": {},
     "current_session": {
-        "name": "NIGHT SESSION (10:00 PM - 02:00 AM)",
-        "signals": []
-    }
-}
+        "name": "DAY SESSION (12:00 PM - 04:00 PM)",
+        "signals": [
+            {
+                "time_str": "14:47",
+                "timestamp": 
